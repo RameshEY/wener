@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "12"
 before_script:
-  - echo building $$TRAVIS_BUILD_DIR
+  - echo will make $TRAVIS_BUILD_DIR build under $PWD/../docusaurus with patch
   - cd ..
   - git clone --depth 1 -b master https://github.com/wenerme/docusaurus
   - cd docusaurus
@@ -10,8 +10,8 @@ before_script:
   - git apply wener/site/docusaurus.patch
 script:
   - yarn
-  - NODE_ENV=production yarn workspace wener-website start
-  - cd ${TRAVIS_BUILD_DIR}
+  - NODE_ENV=production yarn workspace wener-website build
+  # - cd ${TRAVIS_BUILD_DIR}
   # customized public material
   # - rsync -avrc /docusaurus/wener/site/public /docusaurus/wener/site/build
 
